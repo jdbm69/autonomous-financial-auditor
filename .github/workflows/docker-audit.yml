@@ -1,0 +1,22 @@
+name: Run Financial Auditor in Docker
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build Docker image
+        run: docker build -t auditor .
+
+      - name: Run Auditor container
+        run: docker run --env-file .env auditor
