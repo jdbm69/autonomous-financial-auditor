@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
-GITHUB_REPO = os.getenv("GITHUB_REPO")  # ej: "jhonnybracho/autonomous-financial-auditor"
+GITHUB_TOKEN = os.getenv("GH_TOKEN")
+GITHUB_REPO = os.getenv("GH_REPO")
 
 
 def read_csv(path):

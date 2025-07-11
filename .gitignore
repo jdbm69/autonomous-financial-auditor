@@ -1,0 +1,35 @@
+# Entorno virtual de Python
+venv/
+ENV/
+env/
+.venv/
+
+# Archivos de configuración sensibles
+.env
+.env.*
+
+# __pycache__ y archivos de compilación
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Archivos de logs
+*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de pruebas o temporales
+*.bak
+*.tmp
+
+# Datos locales
+*.sqlite3
+*.db
+
+# Archivos CSV temporales (opcional si no querés subir ninguno)
+# *.csv
+
+# Archivos de Jupyter Notebook checkpoints (si usás notebooks)
+.ipynb_checkpoints/
