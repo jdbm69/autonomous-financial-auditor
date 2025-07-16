@@ -8,7 +8,7 @@ env/
 .env
 .env.*
 
-# __pycache__ y archivos de compilación
+# Archivos de cache y compilación de Python
 __pycache__/
 *.py[cod]
 *.pyo
@@ -20,16 +20,16 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Archivos de pruebas o temporales
+# Archivos temporales o de respaldo
 *.bak
 *.tmp
 
-# Datos locales
+# Datos locales de bases de datos
 *.sqlite3
 *.db
 
-# Archivos CSV temporales (opcional si no querés subir ninguno)
+# CSV temporales o generados (comentá esta línea si querés subir los tuyos)
 # *.csv
 
-# Archivos de Jupyter Notebook checkpoints (si usás notebooks)
+# Archivos de Jupyter (por si usás en el futuro)
 .ipynb_checkpoints/

@@ -3,7 +3,7 @@ name: Auditoría Financiera
 on:
   push:
     branches: [main]
-  workflow_dispatch:  # permite ejecución manual
+  workflow_dispatch:  # permite ejecución manual desde GitHub
 
 jobs:
   auditoria:
@@ -23,10 +23,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: ✅ Ejecutar la auditoría financiera
+      - name: ✅ Ejecutar la auditoría financiera con BeeAI
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_REPO: ${{ secrets.GH_REPO }}
         run: |
-          python run_auditor.py
+          python run_auditor_beeai.py

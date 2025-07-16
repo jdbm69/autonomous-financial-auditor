@@ -10,4 +10,4 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Comando por defecto
-CMD ["python", "run_auditor.py"]
+CMD ["python", "run_auditor_beeai.py"]

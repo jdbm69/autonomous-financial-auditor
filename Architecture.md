@@ -8,23 +8,30 @@ This solution continuously monitors a GitHub repository containing financial rep
 
 ### 1. GitHub Repository
 
-* Contains `balance.csv` and `quarterly.csv`
-* Triggers GitHub Actions on every push to `main`
+- Contains `balance.csv` and `quarterly.csv`
+- Triggers GitHub Actions on every push to `main`
+- Stores issue reports and automation logic
 
 ### 2. GitHub Actions (CI/CD)
 
-* Trigger: `on.push` to main or manual dispatch
-* Job: Builds Docker container and runs the `run_auditor.py` script
+- **Trigger**: Push to `main` or manual dispatch
+- **Job**: Builds the Docker container and runs `run_auditor_beeai.py`
+- **Workflows**:
+  - `audit.yml`: Executes Python script natively
+  - `docker-audit.yml`: Executes script inside Docker container
 
-### 3. AI Auditor Service (Python)
+### 3. AI Auditor Service (BeeAI Agents)
 
-* Reads CSV files from the repo
-* Sends them to GPT-4 via OpenAI API
-* Analyzes for:
-
-  * Accounting discrepancies
-  * Net income vs retained earnings
-  * Missing depreciation or loan payments
+- **Main Script**: `run_auditor_beeai.py`
+- **Framework**: [beeai-framework](https://framework.beeai.dev/)
+- **Workflow**:
+  1. Reads CSVs
+  2. Runs multi-agent BeeAI workflow:
+     - `ReaderAgent`: Confirms document intake
+     - `AuditorAgent`: Performs technical analysis
+     - `ReportAgent`: Writes a professional summary
+  3. Detects issues via keyword analysis
+  4. Creates a GitHub Issue if needed
 
 ### 4. GitHub Issue Creator
 
@@ -58,17 +65,15 @@ This solution continuously monitors a GitHub repository containing financial rep
 
 ## 🔄 Flow Diagram
 
-```text
 ┌──────────────┐        ┌────────────────────┐        ┌──────────────┐
 │   Push to    ├──────➔│ GitHub Action Trigger │──────➔│  Docker Build │
 │    main      │        └────────────────────┘        └─────────────┘
-     
-                                                   │
-                                                   v
-                                      ┌────────────────────────┐
-                                      │   run_auditor.py       │
-                                      │ - read CSVs            │
-                                      │ - GPT-4 comparison     │
-                                      │ - create issue if needed│
-                                      └─────────────────────┘
-```
+                                                       │
+                                                       v
+                                      ┌────────────────────────────┐
+                                      │ run_auditor_beeai.py       │
+                                      │ - load BeeAI agents        │
+                                      │ - process balance + P&L    │
+                                      │ - detect inconsistencies   │
+                                      │ - post GitHub Issue if any │
+                                      └────────────────────────────┘

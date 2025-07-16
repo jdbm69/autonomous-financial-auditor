@@ -1,9 +1,12 @@
-🧠 Autonomous Financial Auditor.
-Este proyecto implementa un agente autónomo que compara dos reportes financieros (balance.csv y quarterly.csv) y detecta inconsistencias. Si encuentra errores, crea o actualiza un Issue en el repositorio de GitHub.
+🧠 Autonomous Financial Auditor
+
+Este proyecto implementa un agente autónomo basado en el framework [BeeAI](https://framework.beeai.dev/) que compara dos reportes financieros (`balance.csv` y `quarterly.csv`) y detecta inconsistencias.  
+Si encuentra errores, crea o actualiza automáticamente un Issue en el repositorio de GitHub.
 
 
 
-📂 Estructura del proyecto.
+📂 Estructura del proyecto
+
 El proyecto está organizado así:
 
 .github/workflows/: contiene los workflows de GitHub Actions (audit.yml y docker-audit.yml)
@@ -15,6 +18,9 @@ auditor.log: archivo de logs generados
 balance.csv y quarterly.csv: archivos con datos financieros
 
 run_auditor.py: script principal del auditor
+(sin framework)
+
+run_auditor_beeai.py: Script principal del auditor (usando BeeAI)
 
 Dockerfile y docker-compose.yml: para ejecutar el agente en Docker
 
@@ -41,7 +47,7 @@ pip install -r requirements.txt
 
 2. Ejecutar la auditoría:
 
-python run_auditor.py
+python run_auditor_beeai.py
 
 
 
@@ -80,16 +86,18 @@ Ambos se activan automáticamente con cada push al branch main o manualmente des
 
 4. Si hay errores, se crea un Issue en GitHub con el resumen.
 
-5. Todos los eventos se registran en el archivo auditor.log.
+5. Todos los eventos se registran en el archivo auditor_beeai.log.
 
 
 
 📊 Observabilidad
-- Los logs de auditoría se guardan en auditor.log.
+- Los logs de auditoría se guardan en auditor_beeai.log.
 
 - Se imprimen mensajes de estado en consola y archivo.
 
 - Se usan niveles de logging (INFO, WARNING, ERROR).
+
+- Silenciamiento completo de logs HTTP innecesarios (litellm, httpx)
 
 
 
